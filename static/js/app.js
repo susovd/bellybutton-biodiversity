@@ -40,9 +40,10 @@ function bargraph(userInput) {
         size: otu_values,
         color: otu_ids,
         colorscale: "Earth"
-      }
-    }
-
+      };
+    };
+    
+      //bubble graph
     var bubbleLayout = {
       title: "Bacteria cultures per sample",
       margin: {
@@ -54,6 +55,22 @@ function bargraph(userInput) {
       }
     }
     Plotly.newPlot("bubble", [bubbleData], bubbleLayout)
+
+    // Select the metadata array and for each item append the item ID and adds ID to dropdown
+  data.metadata.forEach(x => {
+    d3.select ("#selDataset").append('option').attr('value', x.id).text(x.id);
+    });
+    // pass the selected value
+    d3.select("#selDataset").node().value = userInput;
+    
+    // Filter Metadata for selected ID 
+    const idMetadata = data.metadata.filter(x=> (x.id == userInput));
+    
+    
+    const panelDisplay = d3.select("#sample-metadata");
+    Object.entries(idMetadata[0]).forEach(x=> {
+    panelDisplay.append("p").text(`${x[0]}: ${x[1]}`)
+    });
 
 
   });
