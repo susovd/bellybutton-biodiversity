@@ -1,5 +1,3 @@
-
-
 //horizontal bar graph
 function bargraph(userInput) {
   //read the data
@@ -7,20 +5,25 @@ function bargraph(userInput) {
     //get the data of ids, sample values hover text ->labels
     var sampleinfo = data_json.samples;
     // filter the data to only get the information associated with the input id
-    var idData = sampleinfo.filter(x => x.id == userInput);
-    //since it is an array get the first array of otu_ids
-    var otu_ids = idData[0].otu_ids;
-    var otu_labels = idData[0].otu_labels;
-    var otu_values = idData[0].sample_values;
-    //format your id to add OTU in the beginning
+    var DataId = sampleinfo.filter(x => x.id == userInput);
+    // get the first array of otu_ids
+    var otu_ids = DataId[0].otu_ids;
+    var otu_labels = DataId[0].otu_labels;
+    var otu_values = DataId[0].sample_values;
+    //format id to add OTU in the beginning
     var yValues = otu_ids.slice(0, 10).map(x => "OTU" + x).reverse()
-    //this where you select your x axis value, y axis value and type of graph
+    //create traces and layout for graph
     var barData = {
-      x: otu_values.slice(0, 10).reverse(),     //top 10 values
-      y: yValues,     // formatted ids
-      text: otu_labels.slice(0, 10).reverse(),     //labels
-      type: "bar", //bar graphs
-      orientation: "h" //horizontal graphs
+      //top 10 values
+      x: otu_values.slice(0, 10).reverse(),     
+      // formatted ids
+      y: yValues,
+      //labels     
+      text: otu_labels.slice(0, 10).reverse(),     
+      //bar graphs
+      type: "bar",
+      //horizontal graphs 
+      orientation: "h" 
     };
     var Layout = {
       title: "Bacteria found"
