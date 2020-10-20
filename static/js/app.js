@@ -57,15 +57,15 @@ function bargraph(userInput) {
     Plotly.newPlot("bubble", [bubbleData], bubbleLayout)
 
     // Select the metadata array and for each item append the item ID and adds ID to dropdown
-    var metadata = data.metadata;
-    var idMetadata = metadata.filter(x=> (x.id ==userInput));
+    var metadata = data_json.metadata; //assign data.metadata to a var to have cleaner code
+    var idMetadata = metadata.filter(x=> (x.id == userInput)); //
 
-    var metadataOutput = idMetadata[0];
+    var metadataOutput = idMetadata[0]; //pull first object entry from idMetadata[0] and assign it to a separate variable
     const panelDisplay = d3.select("#sample-metadata");
-    panelDisplay.html("");  
+    panelDisplay.html("");  //clear any existing metadata
     Object.entries(metadataOutut).forEach(([key, value])=> {
       panelDisplay.append("p").text(`${key.toUpperCase()}: ${value}`);
 
   });
-  bargraph(d3.select("#selDataset"))
+  bargraph(d3.select("#selDataset")); //calling bargraph function
 };
