@@ -1,4 +1,5 @@
 
+
 //horizontal bar graph
 function bargraph(id_iput) {
   //read the data
@@ -54,3 +55,32 @@ function bargraph(id_iput) {
 
   });
 };
+
+
+// demographic info
+
+//drop down menu
+function defaultfunction() {
+  //this populates the dropdown for users to choose
+  d3.json("samples.json").then((data) => {
+    var names = data.names;
+    names.forEach((name) => {
+      d3.select("#selDataset").append("option").text(name).property("value", name);
+    });
+    //select one by default
+    bargraph(data.names[0]);
+    //place your bubule chart and demographics function here
+  });
+};
+
+//when user changes it then it will change the graphs
+// get optionChanged(this.value) from the index file and create a function for it
+// this function should change the visualisations based on the selected id
+function optionChanged(userInput) {
+  bargraph(userInput);
+  //place your bubule chart and demographics function here
+};
+//this is the default function you initialise that chooses a default option of the dropdown menu so graphs will always be shown
+defaultfunction();
+
+
