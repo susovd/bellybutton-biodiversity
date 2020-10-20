@@ -84,3 +84,37 @@ function optionChanged(userInput) {
 defaultfunction();
 
 
+//tuesday codes
+function demoInfo(id_iput) {  
+  //read the data  
+  d3.json("samples.json").then((data_json) => {    
+  //get the data of ids, sample values hover text ->labels
+      var metadata = data_json.metadata;
+      // filter the data to only get the information associated with the input id
+      var id_data = metadata.filter(x => x.id == id_iput);
+      var id_result = id_data[0];
+      htmlEntry = d3.select("#sample-metadata");
+      Object.entries(id_result).forEach(([key, value]) => {
+        htmlEntry.append("p").text(`${key}:${value}`)    });
+    });
+  };
+
+
+//that's a new function to add
+  //drop down menu
+function defaultfunction() {
+  //this populates the dropdown for users to choose
+  d3.json("samples.json").then((data) => {
+    var names = data.names;
+    names.forEach((name) => {
+      d3.select("#selDataset").append("option").text(name).property("value", name);    });
+    //select one by default
+    bargraph(data.names[0]);
+    demoInfo(data.names[0]);
+    //place your bubule chart and demographics function here
+  });
+};
+
+//in your default function then try running it
+
+demoInfo(data.names[0]);
