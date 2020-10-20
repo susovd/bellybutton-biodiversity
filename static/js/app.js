@@ -1,30 +1,32 @@
 //horizontal bar graph
-function bargraph(id_iput) {
+function bargraph(id_input) {
   //read the data
   d3.json("samples.json").then((data_json) => {
     //get the data of ids, sample values hover text ->labels
-    var samplesdata = data_json.samples;
+    var dataSamples = data_json.samples;
     // filter the data to only get the information associated with the input id
-    var id_data = samplesdata.filter(x => x.id == id_iput);
+    var dataId = dataSamples.filter(x => x.id == id_input);
     //since it is an array get the first array of otu_ids
-    var otu_ids = id_data[0].otu_ids;
-    var otu_labels = id_data[0].otu_labels;
-    var otu_values = id_data[0].sample_values;
-    //format your id to add OTU in the beginning
+    var otu_ids = dataId[0].otu_ids;
+    var otu_labels = dataId[0].otu_labels;
+    var otu_values = dataId[0].sample_values;
+    //format id to add OTU 
     var yValues = otu_ids.slice(0, 10).map(x => "OTU" + x).reverse()
-    //this where you select your x axis value, y axis value and type of graph
-    var readData = {
-      x: otu_values.slice(0, 10).reverse(),     //top 10 values
-      y: yValues,     // formatted ids
-      text: otu_labels.slice(0, 10).reverse(),     //labels
-      type: "bar", //bar graphs
+    //create traces and layout
+    var dataTrace = {
+      
+      //top 10 values
+      x: otu_values.slice(0, 10).reverse(),     
+      y: yValues,    
+      text: otu_labels.slice(0, 10).reverse(),     
+      type: "bar", 
       orientation: "h" //horizontal graphs
     };
-    var setLayout = {
+    var layout = {
       title: "Bacteria found"
     };
-    var data = [readData];
-    Plotly.newPlot("bar", data, setLayout);
+    var data = [dataTrace];
+    Plotly.newPlot("bar", data, layout);
 
     var bubbleData = {
       x: otu_ids,
@@ -67,9 +69,7 @@ function defaultfunction() {
   });
 };
 
-//when user changes it then it will change the graphs
-// get optionChanged(this.value) from the index file and create a function for it
-// this function should change the visualisations based on the selected id
+// function to change the visualisations based on the selected id
 function optionChanged(userInput) {
   bargraph(userInput);
   // select div with panel body
@@ -78,21 +78,21 @@ function optionChanged(userInput) {
   panelBody.html("");
   demoInfo(userInput);
 };
-//this is the default function you initialise that chooses a default option of the dropdown menu so graphs will always be shown
+//this is the default function one initialises that chooses a default option of the dropdown menu so graphs will always be shown
 defaultfunction();
 
 
 
-function demoInfo(id_iput) {  
+function demoInfo(idInput) {  
   //read the data  
   d3.json("samples.json").then((data_json) => {    
   //get the data of ids, sample values hover text ->labels
       var metadata = data_json.metadata;
       // filter the data to only get the information associated with the input id
-      var id_data = metadata.filter(x => x.id == id_iput);
-      var id_result = id_data[0];
+      var dataId = metadata.filter(x => x.id == idInput);
+      var ResultId = dataId[0];
       htmlEntry = d3.select("#sample-metadata");
-      Object.entries(id_result).forEach(([key, value]) => {
+      Object.entries(ResultId).forEach(([key, value]) => {
         htmlEntry.append("p").text(`${key}:${value}`)    });
     });
   };
@@ -113,5 +113,5 @@ function defaultfunction() {
   });
 };
  
-//demoInfo(data.names[0]);
+
 
