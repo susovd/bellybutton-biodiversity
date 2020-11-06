@@ -21,7 +21,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project 
-![Bacteria by filterforge.com](file/Images/bacteria.jpg)
+![Bacteria by filterforge.com](files/Images/bacteria.jpg)
 
 In this project, I have built an interactive dashboard to explore the Belly Button Biodiversity dataset, which catalogs the microbes that colonize human navels.
 
@@ -60,8 +60,8 @@ I took following steps to create the dashboard.
 6. Update all of the plots any time that a new sample is selected.
 
 Here are a couple of screenshots of the dashboard for 2 different subject ids, 940 and 1294 respectively.
-![940](file/Images/subject_940.png)
-![1294](file/Images/subject_1294.png)
+![940](files/Images/subject_940.png)
+![1294](files/Images/subject_1294.png)
 
 ### Built With
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/javascript)
