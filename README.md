@@ -75,7 +75,7 @@ To load the dashboard, use the following steps.
 
 ## Deployment
 
-The apps is deployed to a free static page hosting service at Github pages. Please click [here](https://susovd.github.io/plotly-challenge/files/index.html). 
+The apps is deployed to a free static page hosting service at Github pages. Please click [here](https://susovd.github.io/bellybutton-biodiversity/files/index.html). 
 
 **Additional reference materials:**
 
