@@ -1,4 +1,4 @@
-//horizontal bar graph
+// setup horizontal bar graph
 function bargraph(id_input) {
   //read the data
   d3.json("samples.json").then((data_json) => {
@@ -15,7 +15,7 @@ function bargraph(id_input) {
     //create traces and layout
     var dataTrace = {
       
-      //top 10 values
+    // filter top 10 values to show in the plot
       x: otu_values.slice(0, 10).reverse(),     
       y: yValues,    
       text: otu_labels.slice(0, 10).reverse(),     
@@ -51,8 +51,6 @@ function bargraph(id_input) {
       }
     }
     Plotly.newPlot("bubble", [bubbleData], bubbleLayout)
-
-
   });
 };
 
@@ -81,8 +79,6 @@ function optionChanged(userInput) {
 //this is the default function one initialises that chooses a default option of the dropdown menu so graphs will always be shown
 defaultfunction();
 
-
-
 function demoInfo(idInput) {  
   //read the data  
   d3.json("samples.json").then((data_json) => {    
@@ -97,9 +93,7 @@ function demoInfo(idInput) {
     });
   };
 
-
-
-  //drop down menu
+//drop down menu
 function defaultfunction() {
   //this populates the dropdown for users to choose
   d3.json("samples.json").then((data) => {
